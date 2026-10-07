@@ -1,3 +1,4 @@
+<img width="1280" height="637" alt="adas image" src="https://github.com/user-attachments/assets/1f9a023e-53aa-4d2f-9f3c-205b34a1fc7d" />
 # Smart Vehicle Vision System with Image Recognition and Automatic Headlight Control
 
 ## I. AI and Autonomous Systems Applications
