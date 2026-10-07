@@ -54,7 +54,7 @@ The system combines image-based perception with an intelligent decision-making m
 
 ---
 
-# III. Objectives to Achieve the Project
+# III. Objectives
 
 ### Objective 1
 
@@ -86,13 +86,14 @@ Evaluate the system under different road and lighting scenarios and analyze its 
 
 # V. Datasets Used
 
-The project uses multiple datasets to support vehicle detection, road-scene understanding, and low-light/night-time vehicle detection.
+The proposed system uses two datasets to support road-scene understanding, object detection, and low-light image analysis.
 
 ## 1. BDD100K Dataset
 
 The BDD100K dataset is used for real-world driving-scene analysis and object detection. It provides diverse road images containing vehicles, pedestrians, traffic signs, traffic lights, and other objects commonly found in driving environments.
 
-**Dataset:**  
+### Dataset Link
+
 https://www.kaggle.com/datasets/solesensei/solesensei_bdd100k
 
 ### Usage in the Project
@@ -101,7 +102,8 @@ https://www.kaggle.com/datasets/solesensei/solesensei_bdd100k
 - Pedestrian detection
 - Road-scene understanding
 - Traffic-object recognition
-- Object detection under normal driving conditions
+- Object detection under driving conditions
+- Analysis of different driving environments
 
 ---
 
@@ -109,49 +111,32 @@ https://www.kaggle.com/datasets/solesensei/solesensei_bdd100k
 
 The ExDark (Exclusively Dark) dataset contains images captured under different low-light conditions. It is useful for evaluating object detection and image recognition when illumination is limited.
 
-**Dataset:**  
+### Dataset Link
+
 https://www.kaggle.com/datasets/washingtongold/exdark-dataset
 
 ### Usage in the Project
 
 - Low-light image analysis
-- Night-time object detection
-- Vehicle and pedestrian detection
+- Dark-environment object detection
+- Vehicle detection under poor illumination
+- People/pedestrian detection
 - Evaluation of detection performance under dark conditions
 - Testing image-processing and enhancement techniques
 
 ---
 
-## 3. PVDN – Provident Vehicle Detection at Night
+# VI. Night-Time Driving and Intelligent Headlight Control
 
-The Provident Vehicle Detection at Night (PVDN) dataset is particularly relevant to the automatic headlight-control component of the proposed project.
-
-The dataset focuses on vehicle detection during night-time driving and supports the identification of vehicles based on their visible head and tail lights.
-
-**Dataset:**  
-https://www.kaggle.com/datasets/saralajew/provident-vehicle-detection-at-night-pvdn
-
-### Usage in the Project
-
-- Night-time vehicle detection
-- Detection of approaching vehicles
-- Detection of preceding vehicles
-- Headlight and taillight-based analysis
-- Automatic high-beam/low-beam decision support
-
----
-
-# VI. Nighttime Vehicle Detection for Intelligent Headlight Control
-
-Good visibility of the road ahead is an important requirement for safe night-time driving. During night-time, high beams can improve visibility, but improper use may cause glare and discomfort to approaching or preceding vehicles.
+Good visibility of the road ahead is an important requirement for safe night-time driving. During night-time, high beams can improve visibility, but improper use may cause glare and discomfort to other road users.
 
 Therefore, an intelligent automatic headlight-control system can help determine when high beams and low beams should be used.
 
-The proposed project uses camera-based computer vision to detect vehicles and analyse the surrounding road environment. At night-time, vehicles can be identified using visible headlight and taillight information. However, reflections from traffic signs, poles, fences, and other infrastructure can make vehicle detection difficult.
+The proposed project uses camera-based computer vision to analyse the surrounding road environment. The system identifies vehicles, pedestrians, and other relevant objects and considers the lighting condition of the scene.
 
-The use of image recognition and deep learning techniques can help distinguish actual vehicles from reflections and other bright objects.
+The BDD100K dataset provides diverse driving-scene images for road-scene and object detection, while the ExDark dataset provides low-light images for evaluating object recognition under challenging illumination conditions.
 
-The system aims to provide a practical real-time vehicle detection mechanism using a camera-based input system. The detected vehicles and lighting conditions can then be used by the headlight-control module to determine an appropriate lighting state.
+The combination of these datasets supports the development of a vehicle vision system capable of analysing both normal and low-light driving environments.
 
 ---
 
@@ -159,7 +144,7 @@ The system aims to provide a practical real-time vehicle detection mechanism usi
 
 The proposed system follows the workflow:
 
-**Camera Input → Image Preprocessing → Lighting Condition Detection → Object Detection → Vehicle Identification → Distance/Position Analysis → Headlight Decision → Output**
+**Camera Input → Image Preprocessing → Lighting Condition Detection → Object Detection → Vehicle Identification → Headlight Decision → Output**
 
 ### 1. Camera Input
 
@@ -195,7 +180,7 @@ The system determines whether detected objects are vehicles and identifies their
 
 ### 6. Headlight Decision
 
-Based on lighting conditions and detected surrounding vehicles, the system determines an appropriate headlight state.
+Based on the lighting conditions and detected surrounding vehicles, the system determines an appropriate headlight state.
 
 Possible outputs include:
 
@@ -216,21 +201,21 @@ The automatic headlight-control mechanism is one of the main components of the p
 A simplified decision mechanism can be represented as:
 
 ```text
-                 Input Image
-                      |
-                      v
-              Lighting Detection
-                      |
-             +--------+--------+
-             |                 |
-           Daytime          Night/Low Light
-                               |
-                               v
-                       Vehicle Detection
-                               |
-                    +----------+----------+
-                    |                     |
-             Vehicle Detected       No Vehicle
-                    |                     |
-                    v                     v
-                LOW BEAM              HIGH BEAM
+                    Input Image
+                         |
+                         v
+                Lighting Detection
+                         |
+              +----------+----------+
+              |                     |
+           Daytime             Night / Low Light
+                                    |
+                                    v
+                            Vehicle Detection
+                                    |
+                         +----------+----------+
+                         |                     |
+                  Vehicle Detected       No Vehicle
+                         |                     |
+                         v                     v
+                     LOW BEAM              HIGH BEAM
